@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
     <title>TripSpiration</title>
-</head>
-<body>
+
     
+</head>
+<header role ="banner">
+    <nav class ="navigation" role="navigation">
+        <a href="index.html">TripSpiration</a>
+    </nav>
+</header>
+<body>
+    <h1>Welcome to your one stop shop for travel inspiration - enter a city below to view photos, weather, and get recommendations on things to do and see</h1>
+
+<form class="form" role="form">
+    <input type="text" placeholder="enter a city i.e. Barcelona" id="searchbox" required/>
+    <input type="submit" id="submit" value="Take me there" />
+</form>
+
+<div class="gallery" class="hidden"></div>
+
+<section class="weather"></section>
+
+
+    <script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>    
+<script src="scripts.js"></script>
 </body>
 </html>
