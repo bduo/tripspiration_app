@@ -6,19 +6,26 @@ console.log('JavaScript is working!')
 function submitForm() {
   $(".form").submit(function(event) {
     event.preventDefault();
-    let userInput = $('#searchbox').val();
-    console.log(userInput);
-    generateCityPics(userInput);
+    let city = $('#searchbox').val();
+    generateCityPics(city);
   });
 }
 
 function generateCityPics(city) {
-  const url = `https://api.flickr.com/services/feeds/photos_public.gne?api_key=2d07518749b2f22d95a0014dfa38c300&format=json&tags=paris+landmark`
+  const url = `https://api.flickr.com/services/feeds/photos_public.gne?api_key=2d07518749b2f22d95a0014dfa38c300&format=json&jsoncallback=processJSON&tags=${city}&method=get`
   fetch(url)
-    .then(response => response.json())
-    .then(responseJson => renderPics(responseJson))
-    .catch(error => console.error(error));
+  .then(response => {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error(response.statusText)
+})
+.then(responseJson => renderResults(responseJson))
+.catch(error => {
+    $('#error-message').html(`something went wrong: ${error.message}`)
+})
 }
+
 
 function renderPics(responseJson) {
   let results = `<img src="${
