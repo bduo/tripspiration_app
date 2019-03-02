@@ -6,14 +6,19 @@ console.log('JavaScript is working!')
 function submitForm() {
   $(".form").submit(function(event) {
     event.preventDefault();
-    let city = $('#searchbox').val();
-    generateCityPics(city);
+    let userInput = $('#searchbox').val();
+    generateCityPics(userInput);
   });
 }
 
 function generateCityPics(city) {
   const url = `https://api.flickr.com/services/feeds/photos_public.gne?api_key=2d07518749b2f22d95a0014dfa38c300&format=json&jsoncallback=processJSON&tags=${city}&method=get`
-  fetch(url)
+  fetch(url, {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*'
+    }
+  })
   .then(response => {
     if (response.ok) {
         return response.json();
@@ -27,7 +32,7 @@ function generateCityPics(city) {
 }
 
 
-function renderPics(responseJson) {
+function renderResults(responseJson) {
   let results = `<img src="${
     responseJson.urls.small
   }" alt="city images" class="results-img" />`;
