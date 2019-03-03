@@ -1,6 +1,5 @@
 "use strict";
 
-console.log('JavaScript is working!')
 
 
 function submitForm() {
@@ -9,6 +8,7 @@ function submitForm() {
     let userInput = $('#searchbox').val();
     generateCityPics(userInput);
     generateWeather(userInput);
+    generateRecs(userInput)
   });
 }
 
@@ -52,6 +52,23 @@ function generateWeather(city) {
  })
  }
 
+ function generateRecs(city) {
+  const url = `https://api.foursquare.com/v2/venues/explore?near=${city}&client_id=G0ZTRLEUNDR53BOKWQUKUOKJHNBVACEMHJRGGHDAN2HYAQRH&client_secret=DNNFDZOEDGOAAHLAUHRMZMZOFAKCT5BZY5RE13VHS5JATSXB&v=20190301`
+fetch(url)
+.then(response => {
+  if (response.ok) {
+      return response.json();
+  }
+  throw new Error(response.statusText)
+})
+.then(responseJsonRecs => {
+ console.log(responseJsonRecs.response.groups);
+renderRecs(responseJsonRecs)})
+.catch(error => {
+  $('#error-message').html(`something went wrong: ${error.message}`)
+})
+}
+
 
 
 function renderPics(responseJson) {
@@ -68,6 +85,20 @@ function renderWeather(responseJsonWeather) {
   const weather = `<p> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </p>`;
   $(".weather").html(weather);
 }
+
+function renderRecs(responseJsonRecs) {
+ 
+  const recs = responseJsonRecs.response.groups.map(element => {
+    element.items.map(ele => { console.log(ele.venue.name)});
+ });
+ console.log(recs)
+
+    $(".recs").html(recs);
+
+  }
+      
+
+ 
 
 
 $(submitForm);
