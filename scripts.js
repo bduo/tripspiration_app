@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 function submitForm() {
   $(".form").submit(function(event) {
     event.preventDefault();
@@ -89,13 +87,22 @@ function renderWeather(responseJsonWeather) {
 function renderRecs(responseJsonRecs) {
  
   const recs = responseJsonRecs.response.groups.map(element => {
-    element.items.map(ele => { console.log(ele.venue.name)});
- });
- console.log(recs)
+    return element.items.map(ele => {console.log(ele.venue.name);
+      return `<h2>${ele.venue.name}</h2>
+      <li><a href="${ele.venue.url}" target="_blank">${ele.venue.url}</li></a>`
+    });
+});
 
-    $(".recs").html(recs);
+// arrayName[class][subclass]
 
-  }
+// console.log(responseJsonRecs['response'][groups][items]);
+ console.log(recs);
+
+    $(".recs").html(recs.join(" "));
+
+}
+
+
       
 
  
