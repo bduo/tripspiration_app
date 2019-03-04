@@ -24,7 +24,7 @@ function generateCityPics(city) {
 	})
   	.then(responseJson => {
 		if (responseJson['photos'].length===0) {
-		const badResults = '<p>we do not have photos for this city yet, please check your spelling or try a different location</p>';
+		const badResults = '<p class="alert-text">Sorry no photos for this city yet, please check your spelling or try a different location.</p>';
 			$(".gallery").html(badResults);
 		} else return renderPics(responseJson);
   	})
