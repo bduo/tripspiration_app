@@ -84,7 +84,7 @@ function renderWeather(responseJsonWeather) {
 function renderRecs(responseJsonRecs) {
   	const recs = responseJsonRecs.response.groups.map(element => {
 	return element.items.map(ele => {
-	return ` <h3>${ele.venue.name}</h3>
+	return ` <h3 class="button-closer">${ele.venue.name}</h3>
 	<p><a href="https://www.google.com/search?q=${ele.venue.name}" target="_blank"><i class="fas fa-info-circle"></i></a></p>`
 	}).join("");  
 });
