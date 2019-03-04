@@ -1,9 +1,98 @@
-body {
-    outline: 1px solid red;
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+body{
+    background: url() no-repeat center;
+    background-size: cover;
+    height: 100vh;   
+}
+
+h1 {
+    margin-top: 3%;
+    font-size: 1.65rem;
+    padding-left: 4%;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    cursor: pointer;
+    color: orangered;
+}
+
+footer {
+    padding-left: 4%;
+}
+
+#searchbox {
+    margin-left: 4%;
+    margin-bottom: 1%;
+    display: block;
+    padding: 10px;
+    width: 20%;
+    border: 1px solid #000;
+}
+
+#submit {
+    margin-left: 4%;
+    padding: 10px;
+    border: 1px solid orangered;
+    border-radius: 5px;
+}
+
+#submit:hover {
+    background-color: orangered;
+    color: #fff;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none !important;
+    border:1px solid orangered;
+    box-shadow: 0 0 10px orangered;
+}
+
+.gallery img {
+    padding-right: 1%;
+    padding-bottom: 1%;
+}
+
+.fa-info-circle {
+    font-size: 2.5rem;
+}
+
+.pexel_link {
+    color: orangered;
+}
+
+.pexel_link:hover {
+    color: #000;
+}
+
+.push_down {
+    margin: 2.5% 0 2.5% 0;
+}
+
+.subHeader {
+    padding-left: 4%;
 }
 
 .hidden {
-    display:none;
+    display: none;
 }
 
 .navigation {
@@ -11,6 +100,94 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10px 0 15px;
-    background-color: red;
+    padding: 25px 25px 25px 0;
+    background-color: #000;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding-left: 4%;
+}
+
+.logo:hover {
+    color: orangered;
+}
+
+.gallery, .weather, .recs {
+    padding-left: 4%;
+}
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        margin-top: 6%;
+        margin-bottom: 4%;
+        font-size: 1.45rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    a:hover {
+        cursor: none;
+        color: #000;
+    }
+
+    footer {
+        margin-bottom: 5%;
+    }
+    #searchbox::placeholder {
+        font-size: 1.3rem;
+    }
+
+    #submit {
+        margin-left: 4%;
+        padding: 15px;
+        background-color: orangered;
+        border-radius: 5px;
+        color: #fff;
+    }
+    
+    #submit:hover {
+        background-color: orangered;
+        color: #fff;
+        cursor: none;
+    }
+
+    #searchbox {
+        margin-bottom: 5%;
+        padding: 15px;
+        width: 70%;
+        font-size: 1.3rem;
+    }
+    .gallery img {
+        padding-bottom: 5%;
+    }
+
+    .logo {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.3rem;
+    }
+    
+    .logo:hover {
+        color: #fff;
+    }
+
+    .pexel_link {
+        color: orangered;
+    }
+    
+    .pexel_link:hover {
+        color: orangered;
+    }
+
 }
