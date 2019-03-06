@@ -42,7 +42,6 @@ function generateWeather(city) {
 		throw new Error(response.statusText)
  	})
 	.then(responseJsonWeather => {
-	//console.log(responseJsonWeather);
 	renderWeather(responseJsonWeather)})
 	.catch(error => {
 		$('#error-message').html(`something went wrong: ${error.message}`)
@@ -67,34 +66,29 @@ function generateWeather(city) {
 }
 
 function renderPics(responseJson) {
-	const userInput = $('#searchbox').val();
+	//const userInput = $('#searchbox').val();
 	console.log(responseJson);
   	const results = responseJson.hits.map(element => {
     return `
     <img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
   	$(".gallery").html(results);
-  	//$('#searchbox').val("");
+  	$('#searchbox').val("");
 }
 
-function renderWeather(responseJsonWeather) {
-  const userInput = $('#searchbox').val();
+function renderWeather(responseJsonWeather, userInput) {
+  //const userInput = $('#searchbox').val();
   const weather = `<h2>Wondering what to pack?</h2> <h3> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </h3>`;
   $(".weather").html(weather);
 }
 
-function renderRecs(responseJsonRecs) {
-	const userInput = $('#searchbox').val();
-	console.log(userCity);
-  const recs = responseJsonRecs.response.groups.map(element => {
-	return element.items.map(ele => {
-		//console.log(ele.venue.name);
-		//console.log(userCity);
-	return `<h3 class="button-closer">${ele.venue.name}</h3>
-	<a href="https://www.google.com/search?q=${ele.venue.name}%20${userInput}" target="_blank" class="own-line">more info</a>`
-	}).join("");  
+function renderRecs(responseJsonRecs, userInput) {
+  let recs = responseJsonRecs.response.groups.map( element => {
+		return element.items.map(ele => {
+		return `<h3 class="button-closer">${ele.venue.name}</h3>
+		<a href="https://www.google.com/search?q=${ele.venue.name}+${userInput}" target="_blank" class="own-line">more info</a>`
+	}).join("")
 });
-		console.log(recs);
-  	$(".recs").html(recs);
+    $(".recs").html(recs);
 }
 
 $(submitForm);
