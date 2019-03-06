@@ -49,6 +49,7 @@ function generateWeather(city) {
  }
 
  function generateRecs(city) {
+
   	const url = `https://api.foursquare.com/v2/venues/explore?near=${city}&client_id=G0ZTRLEUNDR53BOKWQUKUOKJHNBVACEMHJRGGHDAN2HYAQRH&client_secret=DNNFDZOEDGOAAHLAUHRMZMZOFAKCT5BZY5RE13VHS5JATSXB&v=20190301`
 	fetch(url)
 	.then(response => {
@@ -59,7 +60,7 @@ function generateWeather(city) {
 	})
 	.then(responseJsonRecs => {
 		console.log(responseJsonRecs.response.groups);
-		renderRecs(responseJsonRecs)})
+		renderRecs(responseJsonRecs, city)})
 	.catch(error => {
 		$('#error-message').html(`something went wrong: ${error.message}`)
 	})
@@ -81,11 +82,11 @@ function renderWeather(responseJsonWeather, userInput) {
   $(".weather").html(weather);
 }
 
-function renderRecs(responseJsonRecs, userInput) {
+function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
 		return `<h3 class="button-closer">${ele.venue.name}</h3>
-		<a href="https://www.google.com/search?q=${ele.venue.name}+${userInput}" target="_blank" class="own-line">more info</a>`
+		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info</a>`
 	}).join("")
 });
     $(".recs").html(recs);
