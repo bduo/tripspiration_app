@@ -1,10 +1,14 @@
 "use strict";
 
+let userInput; 
+
+
 function submitForm() {
   	$(".form").submit(function(event) {
     event.preventDefault();
-    $('h2').removeClass('hidden');
-    let userInput = $('#searchbox').val();
+		$('h2').removeClass('hidden');
+		userInput = $('#searchbox').val().trim();
+		console.log(userInput);
     generateCityPics(userInput);
     generateWeather(userInput);
     generateRecs(userInput)
@@ -72,22 +76,27 @@ function renderPics(responseJson) {
     return `
     <img src="${element.src.tiny}" alt="city images" class="results-img" />`});
   	$(".gallery").html(results);
-  	$('#searchbox').val("");
+  	//$('#searchbox').val("");
 }
 
 function renderWeather(responseJsonWeather) {
-  let userInput = $('#searchbox').val();
+  //let userInput = $('#searchbox').val();
   const weather = `<h2>Wondering what to pack?</h2> <h3> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </h3>`;
   $(".weather").html(weather);
 }
 
 function renderRecs(responseJsonRecs) {
-  	const recs = responseJsonRecs.response.groups.map(element => {
+	//let userInput = $('#searchbox').val();
+	console.log(userCity);
+  const recs = responseJsonRecs.response.groups.map(element => {
 	return element.items.map(ele => {
-	return ` <h3 class="button-closer">${ele.venue.name}</h3>
-	<p><a href="https://www.google.com/search?q=${ele.venue.name}" target="_blank"><i class="fas fa-info-circle"></i></a></p>`
+		//console.log(ele.venue.name);
+		//console.log(userCity);
+	return `<h3 class="button-closer">${ele.venue.name}</h3>
+	<a href="https://www.google.com/search?q=${ele.venue.name}%20${userInput}" target="_blank" class="own-line">more info</a>`
 	}).join("");  
 });
+		console.log(recs);
   	$(".recs").html(recs);
 }
 
