@@ -1,13 +1,10 @@
 "use strict";
 
-let userInput; 
-
-
 function submitForm() {
   	$(".form").submit(function(event) {
     event.preventDefault();
 		$('h2').removeClass('hidden');
-		userInput = $('#searchbox').val().trim();
+		const userInput = $('#searchbox').val();
 		console.log(userInput);
     generateCityPics(userInput);
     generateWeather(userInput);
@@ -16,10 +13,8 @@ function submitForm() {
 }
 
 function generateCityPics(city) {
-  	const url = `https://api.pexels.com/v1/search?per_page=9&query=${city}`
-  	fetch(url, {
-    headers: {'Authorization':"563492ad6f917000010000016d5ccf602df64d5aaf09707eb3e72208"},
-      method: 'GET'})
+		const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=9`
+  	fetch(url)
   	.then(response => {
 		if (response.ok) {
 			return response.json();
@@ -27,7 +22,7 @@ function generateCityPics(city) {
 		throw new Error(response.statusText)
 	})
   	.then(responseJson => {
-		if (responseJson['photos'].length===0) {
+		if (responseJson.hits.length===0) {
 		const badResults = '<p class="alert-text">Sorry no photos for this city yet, please check your spelling or try a different location.</p>';
 			$(".gallery").html(badResults);
 		} else return renderPics(responseJson);
@@ -72,21 +67,23 @@ function generateWeather(city) {
 }
 
 function renderPics(responseJson) {
-  	const results = responseJson['photos'].map(element => {
+	const userInput = $('#searchbox').val();
+	console.log(responseJson);
+  	const results = responseJson.hits.map(element => {
     return `
-    <img src="${element.src.tiny}" alt="city images" class="results-img" />`});
+    <img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
   	$(".gallery").html(results);
   	//$('#searchbox').val("");
 }
 
 function renderWeather(responseJsonWeather) {
-  //let userInput = $('#searchbox').val();
+  const userInput = $('#searchbox').val();
   const weather = `<h2>Wondering what to pack?</h2> <h3> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </h3>`;
   $(".weather").html(weather);
 }
 
 function renderRecs(responseJsonRecs) {
-	//let userInput = $('#searchbox').val();
+	const userInput = $('#searchbox').val();
 	console.log(userCity);
   const recs = responseJsonRecs.response.groups.map(element => {
 	return element.items.map(ele => {
