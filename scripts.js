@@ -71,7 +71,7 @@ function renderPics(responseJson) {
 	console.log(responseJson);
   	const results = responseJson.hits.map(element => {
     return `
-    <img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
+   <a href="${element.pageURL}" target="_blank"><img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
   	$(".gallery").html(results);
   	$('#searchbox').val("");
 }
@@ -86,7 +86,7 @@ function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
 		return `<h3 class="button-closer">${ele.venue.name}</h3>
-		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info</a>`
+		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info from Google <img src="arrows.svg" class="outsidearrow" alt="outside of domain icon"></a>`
 	}).join("")
 });
     $(".recs").html(recs);
