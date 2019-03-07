@@ -76,8 +76,8 @@ function renderPics(responseJson) {
   	$('#searchbox').val("");
 }
 
-function renderWeather(responseJsonWeather, userInput) {
-  //const userInput = $('#searchbox').val();
+function renderWeather(responseJsonWeather) {
+  const userInput = $('#searchbox').val();
   const weather = `<h2>Wondering what to pack?</h2> <h3> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </h3>`;
   $(".weather").html(weather);
 }
@@ -86,7 +86,7 @@ function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
 		return `<h3 class="button-closer">${ele.venue.name}</h3>
-		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info from Google <img src="arrows.svg" class="outsidearrow" alt="outside of domain icon"></a>`
+		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info: Google &nbsp;<img src="arrows.svg" class="outsidearrow" alt="outside of domain icon"></a>`
 	}).join("")
 });
     $(".recs").html(recs);
