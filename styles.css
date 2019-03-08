@@ -4,14 +4,14 @@
     --secondary: #fff;
     --text-border: rgb(54, 54, 54);
 }
+
 * {
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    background: url() no-repeat center;
-    background-size: cover;
-    height: 100vh;   
+main {
+    position: relative;
+    min-height: 100vh;
 }
 
 h1 {
@@ -46,9 +46,10 @@ a:focus, #submit:focus, #searchbox:focus  {
 }
 
 footer {
-    height: 85px;
+    margin-top: 10%;
     position: absolute;
     bottom: 0;
+    height: 85px;
     width: 100%;
     background-color: var(--text-border);
 }

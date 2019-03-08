@@ -73,8 +73,7 @@ function renderPics(responseJson) {
 }
 
 function renderWeather(responseJsonWeather) {
-  const userInput = $('#searchbox').val();
-  const weather = `<h2>Wondering what to pack?</h2> <h3> The current weather in ${userInput} is ${responseJsonWeather.main.temp} F </h3>`;
+  const weather = `<h2>Current Weather Conditions:</h2><div id="openweathermap-widget-19"></div> <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = []; window.myWidgetParam.push({id: 19,cityid: '${responseJsonWeather.id}',appid: '3a891b3d82936c6e090048a99d733621',units: 'imperial',containerid: 'openweathermap-widget-19', }); (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s); })();</script>;` 
   $(".weather").html(weather);
 }
 
