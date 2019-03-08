@@ -36,13 +36,21 @@ a {
     color: var(--text-border);
 }
 
-a:hover {
+a:hover{
     cursor: pointer;
     color: var(--primary);
 }
 
+a:focus, #submit:focus, #searchbox:focus  {
+    outline: 4px solid var(--primary);
+}
+
 footer {
-    padding-left: 4%;
+    height: 85px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--text-border);
 }
 
 label {
@@ -85,9 +93,18 @@ input::selection, input::-moz-selection {
 .own-line {
     display: inline-block;
     color: var(--primary);
+    padding-left: 1.5%;
+}
+
+.own-line:visited {
+    color: var(--primary);
 }
 
 .own-line:hover {
+    color: var(--text-border);
+}
+
+.fa-globe-americas {
     color: var(--text-border);
 }
 
@@ -117,8 +134,7 @@ input:active {
 }
 
 .gallery img {
-    padding-right: 1%;
-    padding-bottom: 1%;
+    padding: 1%;
 }
 
 .fa-info-circle {
@@ -127,17 +143,18 @@ input:active {
     margin-bottom: 2%;
 }
 
-.pexel_link {
-    color: var(--primary);
+.portfolio {
+    color: var(--secondary);
 }
 
-.pexel_link:hover {
-    color: var(--text-border);
+.top_text {
+    text-align: center;
+    color: var(--secondary);
 }
 
-.push_down {
-    margin: 2.5% 0 2.5% 0;
-    color: var(--text-border);
+.bottom_text {
+    text-align: center;
+    color: var(--secondary);
 }
 
 .subHeader {
@@ -172,7 +189,11 @@ input:active {
     color: var(--primary);
 }
 
-.gallery, .weather, .recs {
+.gallery {
+    padding-left: 3%;
+}
+
+.weather, .recs {
     padding-left: 4%;
 }
 
@@ -200,7 +221,7 @@ input:active {
         color: var(--text-border);
     }
     
-    a:hover {
+    a:hover, a:focus {
         cursor: none;
         color: var(--text-border);
     }

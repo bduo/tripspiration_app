@@ -5,7 +5,6 @@ function submitForm() {
     event.preventDefault();
 		$('h2').removeClass('hidden');
 		const userInput = $('#searchbox').val();
-		console.log(userInput);
     generateCityPics(userInput);
     generateWeather(userInput);
     generateRecs(userInput)
@@ -13,7 +12,7 @@ function submitForm() {
 }
 
 function generateCityPics(city) {
-		const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=9`
+		const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=8`
   	fetch(url)
   	.then(response => {
 		if (response.ok) {
@@ -59,7 +58,6 @@ function generateWeather(city) {
 	throw new Error(response.statusText)
 	})
 	.then(responseJsonRecs => {
-		console.log(responseJsonRecs.response.groups);
 		renderRecs(responseJsonRecs, city)})
 	.catch(error => {
 		$('#error-message').html(`something went wrong: ${error.message}`)
@@ -67,8 +65,6 @@ function generateWeather(city) {
 }
 
 function renderPics(responseJson) {
-	//const userInput = $('#searchbox').val();
-	console.log(responseJson);
   	const results = responseJson.hits.map(element => {
     return `
    <a href="${element.pageURL}" target="_blank"><img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
@@ -86,7 +82,7 @@ function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
 		return `<h3 class="button-closer">${ele.venue.name}</h3>
-		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line">more info: Google &nbsp;<img src="arrows.svg" class="outsidearrow" alt="outside of domain icon"></a>`
+		<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line"><i class="fas fa-globe-americas"></i>&nbsp;more info: Google &nbsp;</a>`
 	}).join("")
 });
     $(".recs").html(recs);
