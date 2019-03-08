@@ -20,16 +20,34 @@
     <section role="article">
         <h1>Get Inspired For Your Next Trip!</h1>
         <form class="form" role="form">
-            <label for="searchbox">Enter a city or country or both:
+            <label for="searchbox">Enter a city ie Barcelona:
                 <input type="text" id="searchbox" autocomplete="off" required/>
             </label>
+            <label for="search-month">Select preferred travel month</label>
+            <select name="month" id="travelmonth">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
             <input type="submit" id="submit" value="Take me there &#8594;" />
         </form>
     </section>
     <section role="article">
         <h2 class="hidden subHeader">Check this place out!</h2>
         <div class="gallery"></div>
+        <h2 class="hidden subHeader">Current Weather Conditions:</h2>
         <div class="weather"></div>
+        <h2 class="hidden subHeader">Travel Forecast:</h2>
+        <div class="history"></div>
         <h2 class="hidden subHeader">Popular places to visit:</h2>
         <div class="recs foot-space"></div>
     </section>
