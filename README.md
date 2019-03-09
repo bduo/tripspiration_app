@@ -22,3 +22,5 @@ HTML5
 CSS3 
 JavaScript
 jQuery
+
+![TripSpiration App Screenshot](tripspiration_screenshot.png "TripSpiration")  
