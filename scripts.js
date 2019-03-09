@@ -3,12 +3,19 @@
 function submitForm() {
   	$(".form").submit(function(event) {
     event.preventDefault();
-		$('h2').removeClass('hidden');
-		const userInput = $('#searchbox').val();
+		$("h2").removeClass("hidden");
+		const userInput = $("#searchbox").val();
     generateCityPics(userInput);
     generateWeather(userInput);
     generateRecs(userInput)
   	});
+}
+
+function noFocus() {
+	$(".form").on(click, (event) => {
+	event.preventDefault();
+	$("#travelmonth:focus, #submit:focus, #searchbox:focus").css("outline", "none");
+	})
 }
 
 function generateCityPics(city) {
@@ -27,7 +34,7 @@ function generateCityPics(city) {
 		} else return renderPics(responseJson);
   	})
   	.catch(error => {
-      $('#error-message').html(`something went wrong: ${error.message}`)
+      $('#error-message-pics').html(`Sorry couldn't find the pictures, check spelling: ${error.message}`)
   	})
  }
 
@@ -44,7 +51,7 @@ function generateWeather(city) {
 		generateHistory(responseJsonWeather)
 		renderWeather(responseJsonWeather)})
 	.catch(error => {
-		$('#error-message').html(`something went wrong: ${error.message}`)
+		$('#error-message-weather').html(`Problem finding weather, please check spelling: ${error.message}`)
 	})
  }
 
@@ -59,11 +66,10 @@ function generateHistory(responseJsonWeather) {
 			throw new Error(response.statusText)
 		})
 		.then(responseJsonHistory => {
-			console.log(responseJsonHistory)
 			renderHistory(responseJsonHistory)
 		})
 		.catch(error => {
-			$('#error-message').html(`something went wrong: ${error.message}`)
+			$('#error-message-history').html(`Sorry couldn't find historical weather date, check spelling: ${error.message}`)
 		})
 }
 
@@ -79,7 +85,7 @@ function generateHistory(responseJsonWeather) {
 	.then(responseJsonRecs => {
 		renderRecs(responseJsonRecs, city)})
 	.catch(error => {
-		$('#error-message').html(`something went wrong: ${error.message}`)
+		$('#error-message-recs').html(`Sorry couldn't find the points of interest, check spelling: ${error.message}`)
 	})
 }
 
@@ -99,10 +105,9 @@ function renderWeather(responseJsonWeather) {
 function renderHistory(responseJsonHistory) {
 	const month = $('#travelmonth').val();
 	let history = responseJsonHistory.daily.data.map(element => {
-		return `<h3> The projected weather for ${month}/2019 based on historical averages is a high of ${element.temperatureHigh.toFixed(0)}&#176;F and a low of ${element.temperatureLow.toFixed(0)}&#176;F ${element.summary}</h3>`;
+		return `<h3 class="weather-text"> The projected weather for ${month}/2019 based on historical averages is a high of ${element.temperatureHigh.toFixed(0)}&#176;F and a low of ${element.temperatureLow.toFixed(0)}&#176;F. ${element.summary}</h3>`;
 	});
 	$(".history").html(history)
-	console.log(history);
 }
 
 function renderRecs(responseJsonRecs, city) {
