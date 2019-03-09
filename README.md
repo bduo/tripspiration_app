@@ -11,17 +11,17 @@ vistas, current and projected weather conditions based on historical weather pat
 
 Features: 
 
-Photo gallery of travel destinations
-Current weather wonditions
-Weather forecast during time of travel
-Points of interest recommendations
+- Photo gallery of travel destinations
+- Current weather wonditions
+- Weather forecast during time of travel
+- Points of interest recommendations
 
 Stack Used: 
 
-HTML5
-CSS3 
-JavaScript
-jQuery
+- HTML5
+- CSS3 
+- JavaScript
+- jQuery
 
 Screenshot: 
 

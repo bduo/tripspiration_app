@@ -19,7 +19,7 @@ function noFocus() {
 }
 
 function generateCityPics(city) {
-		const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=3`
+		const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=8`
   	fetch(url)
   	.then(response => {
 		if (response.ok) {
