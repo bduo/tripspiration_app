@@ -23,4 +23,6 @@ CSS3
 JavaScript
 jQuery
 
+Screenshot: 
+
 ![TripSpiration App Screenshot](tripspiration_screenshot.png "TripSpiration")  
