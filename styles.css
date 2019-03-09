@@ -157,7 +157,9 @@ select {
     width: 15px;
 }
 
-.alert-text {
+.alert-text, #error-message-pics, 
+#error-message-weather, #error-message-history,
+#error-message-recs {
     color: var(--primary);
     font-size: 1.1rem;
 }
