@@ -1,4 +1,4 @@
-# tripspiration_app
+# TripSpiration
 
 Take it for a spin! 
 
