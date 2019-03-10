@@ -1,5 +1,6 @@
 "use strict";
 
+// Event listener function for extracting user input. 
 function submitForm() {
 	$(".form").submit(function(event) {
 		event.preventDefault();
@@ -57,7 +58,7 @@ function generateWeather(city) {
 
 function generateHistory(responseJsonWeather) {
 	const month = $('#travelmonth').val();
-	const url = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/dc1ac9820b3586324209af8c5002d883/${responseJsonWeather.coord.lat},${responseJsonWeather.coord.lon},2019-${month}-10T12:00:00`
+	const url = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/dc1ac9820b3586324209af8c5002d883/${responseJsonWeather.coord.lat},${responseJsonWeather.coord.lon},2019-${month}-15T12:00:00`
 	fetch(url)
 	.then(response => {
 		if (response.ok) {
@@ -110,6 +111,7 @@ function renderHistory(responseJsonHistory) {
 	$(".history").html(history)
 }
 
+// Function uses two map methods to get to the deeply nested value inside the JSON object. 
 function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
