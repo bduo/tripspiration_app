@@ -112,7 +112,7 @@ function renderHistory(responseJsonHistory) {
 function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {
-			return `<h3 class="button-closer">${ele.venue.name}</h3>
+			return `<h3 class="mobile-venue">${ele.venue.name}</h3>
 			<a href="https://www.google.com/search?q=${ele.venue.name}+${city}" target="_blank" class="own-line"><i class="fas fa-globe-americas"></i>&nbsp;more info: Google &nbsp;</a>`
 		}).join("")
 	});

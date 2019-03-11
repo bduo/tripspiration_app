@@ -94,7 +94,7 @@ select {
     -moz-appearance: none;
     appearance: none; 
     border: none; 
-    background: url(dropdown_arrow.png) no-repeat center right;    
+    background: url(small_arrow.png) no-repeat center right;    
  }
 
 #submit {
@@ -278,6 +278,14 @@ select {
         cursor: none;
     }
 
+    #error-message-pics, 
+    #error-message-weather, #error-message-history,
+    #error-message-recs, .alert-text {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        padding-right: 4%;
+    }
+
     .logo:hover {
         color: var(--secondary);
     }
@@ -392,6 +400,10 @@ select {
 
     .push_down {
         margin-top: 5%;
+    }
+    
+    .mobile-venue {
+        padding-right: 4%;
     }
 
 }
