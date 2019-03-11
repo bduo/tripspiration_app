@@ -1,6 +1,6 @@
 "use strict";
 
-// Event listener function for extracting user input. 
+// Event listener function for extracting user input. The user will enter a major city and preferred travel month.  
 function submitForm() {
 	$(".form").submit(function(event) {
 		event.preventDefault();
@@ -12,13 +12,7 @@ function submitForm() {
 	});
 }
 
-function noFocus() {
-	$(".form").on(click, (event) => {
-		event.preventDefault();
-		$("#travelmonth:focus, #submit:focus, #searchbox:focus").css("outline", "none");
-	})
-}
-
+// This function retrieves city photos from the Pixabay API. If no city photos are found it generates an error message for the user.  
 function generateCityPics(city) {
 	const url = `https://pixabay.com/api/?key=11800701-4991cb3dddbd2f2db0ae8b7de&q=${city}&image_type=photo&orientation=horizontal&per_page=8`
 	fetch(url)
@@ -30,15 +24,16 @@ function generateCityPics(city) {
 	})
 	.then(responseJson => {
 		if (responseJson.hits.length===0) {
-			const badResults = '<p class="alert-text">Sorry no photos for this city yet, please check your spelling or try a different location.</p>';
+			const badResults = `<p class="alert-text">Sorry, no photos for this city yet, please check your spelling or try a different location.</p>`;
 			$(".gallery").html(badResults);
 		} else return renderPics(responseJson);
 	})
 	.catch(error => {
-		$('#error-message-pics').html(`Sorry couldn't find the pictures, check spelling: ${error.message}`)
+		$("#error-message-pics").html(`Sorry, couldn't find the city pictures, please check your spelling: ${error.message}`)
 	})
 }
 
+// This function retrieves current weather data for the city from the OpenWeatherMap API.
 function generateWeather(city) {
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=3a891b3d82936c6e090048a99d733621&units=imperial`
 	fetch(url)
@@ -52,12 +47,13 @@ function generateWeather(city) {
 		generateHistory(responseJsonWeather)
 		renderWeather(responseJsonWeather)})
 	.catch(error => {
-		$('#error-message-weather').html(`Problem finding weather, please check spelling: ${error.message}`)
+		$("#error-message-weather").html(`Problem finding current weather conditions, please check your spelling: ${error.message}`)
 	})
  }
 
+// This function retrieves historical weather data from the Dark Sky API. 
 function generateHistory(responseJsonWeather) {
-	const month = $('#travelmonth').val();
+	const month = $("#travelmonth").val();
 	const url = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/dc1ac9820b3586324209af8c5002d883/${responseJsonWeather.coord.lat},${responseJsonWeather.coord.lon},2019-${month}-15T12:00:00`
 	fetch(url)
 	.then(response => {
@@ -70,10 +66,11 @@ function generateHistory(responseJsonWeather) {
 		renderHistory(responseJsonHistory)
 	})
 	.catch(error => {
-		$('#error-message-history').html(`Sorry couldn't find historical weather date, check spelling: ${error.message}`)
+		$("#error-message-history").html(`Sorry, couldn't find historical weather data, please check your spelling: ${error.message}`)
 	})
 }
 
+// This function retrieves the points of interest to visit in the city from the FourSquare API. 
  function generateRecs(city) {
   const url = `https://api.foursquare.com/v2/venues/explore?near=${city}&client_id=G0ZTRLEUNDR53BOKWQUKUOKJHNBVACEMHJRGGHDAN2HYAQRH&client_secret=DNNFDZOEDGOAAHLAUHRMZMZOFAKCT5BZY5RE13VHS5JATSXB&v=20190301`
 	fetch(url)
@@ -86,7 +83,7 @@ function generateHistory(responseJsonWeather) {
 	.then(responseJsonRecs => {
 		renderRecs(responseJsonRecs, city)})
 	.catch(error => {
-		$('#error-message-recs').html(`Sorry couldn't find the points of interest, check spelling: ${error.message}`)
+		$("#error-message-recs").html(`Sorry couldn't find the points of interest, please check your spelling: ${error.message}`)
 	})
 }
 
@@ -95,7 +92,7 @@ function renderPics(responseJson, city) {
 	return `
 		<a href="${element.pageURL}" target="_blank"><img src="${element.webformatURL}" alt="${element.tags}" class="results-img" />`;});
 	$(".gallery").html(results);
-	$('#searchbox').val("");
+	$("#searchbox").val("");
 }
 
 function renderWeather(responseJsonWeather) {
@@ -104,14 +101,14 @@ function renderWeather(responseJsonWeather) {
 }
 
 function renderHistory(responseJsonHistory) {
-	const month = $('#travelmonth').val();
+	const month = $("#travelmonth").val();
 	let history = responseJsonHistory.daily.data.map(element => {
 		return `<h3 class="weather-text"> The projected weather for ${month}/2019 based on historical averages is a high of ${element.temperatureHigh.toFixed(0)}&#176;F and a low of ${element.temperatureLow.toFixed(0)}&#176;F. ${element.summary}</h3>`;
 	});
 	$(".history").html(history)
 }
 
-// Function uses two map methods to get to the deeply nested value inside the JSON object. 
+// This function uses two map methods to get to the deeply nested value inside the FourSquare JSON object. 
 function renderRecs(responseJsonRecs, city) {
   let recs = responseJsonRecs.response.groups.map( element => {
 		return element.items.map(ele => {

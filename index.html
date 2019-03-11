@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Normalize reset-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css">
+    <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--Custom CSS-->
     <link rel="stylesheet" href="styles.css" type="text/css">
     <title>TripSpiration</title>
 </head>
 <body>
 <main role="main">
+    <!--Header-->
     <header role ="banner">
         <nav class ="navigation" role="navigation">
             <a href="index.html" class="logo">TripSpiration</a>
@@ -19,6 +24,7 @@
     </header>
     <section role="article">
         <h1>Get Inspired For Your Next Trip!</h1>
+        <!--User form for city search and preferred travel month-->
         <form class="form" role="form">
             <label for="searchbox">Enter a city e.g. Barcelona:
                 <input type="text" id="searchbox" autocomplete="off" required/>
@@ -42,10 +48,12 @@
             <input type="submit" id="submit" value="Take me there &#8594;" />
         </form>
     </section>
+    <!--Error message section for bad paths-->
     <div id="error-message-pics"></div>
     <div id="error-message-weather"></div>
     <div id="error-message-history"></div>
     <div id="error-message-recs"></div>
+    <!--City search results-->
     <section role="article">
         <h2 class="hidden subHeader">Check This Place Out!</h2>
         <div class="gallery"></div>
@@ -65,10 +73,12 @@
         </p>    
     </footer>
 </main>
+<!--jQuery CDN-->
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous"></script>    
+crossorigin="anonymous"></script>
+<!--Custom JS-->    
 <script src="scripts.js"></script>
 </body>
 </html>

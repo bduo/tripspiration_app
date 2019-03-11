@@ -6,8 +6,7 @@ https://bduo.github.io/tripspiration_app/
 
 Summary: 
 
-This application relies on four APIs (FourSquare, OpenWeatherMap, Pixabay, Dark Sky) to inspire the user to travel to a particular city. The content is dynamically generated based on user input. When prompted to enter a travel destination they're curious about and their preferred travel month, the application returns a gallery of beautiful 
-vistas, current and projected weather conditions based on historical weather patterns, in addition to a list of popular points of interest. 
+This application relies on four APIs (FourSquare, OpenWeatherMap, Pixabay, Dark Sky) to inspire the user to travel to a particular city. The content is dynamically generated based on user input. When prompted to enter a travel destination they're curious about and their preferred travel month, the application returns a gallery of spectacular vistas of the city, current and projected weather conditions based on historical weather patterns, in addition to a list of popular local points of interest to visit. TripSpiration is here to help inspire your next trip.  
 
 Features: 
 
